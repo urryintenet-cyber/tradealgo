@@ -47,20 +47,20 @@
   /* Glassmorphism */
   --glass-bg:     rgba(14, 18, 24, 0.85);
   --glass-border: rgba(255, 255, 255, 0.07);
-  --glass-blur:   blur(16px);
+  --glass-blur:   blur(14px);
 
   /* Glows */
-  --glow-primary: 0 0 20px rgba(59, 130, 246, 0.2);
-  --glow-success: 0 0 20px rgba(34, 197, 94, 0.2);
-  --glow-danger:  0 0 20px rgba(239, 68, 68, 0.2);
+  --glow-primary: 0 0 17px rgba(59, 130, 246, 0.2);
+  --glow-success: 0 0 17px rgba(34, 197, 94, 0.2);
+  --glow-danger:  0 0 17px rgba(239, 68, 68, 0.2);
 
   /* Border Radius */
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
-  --radius-2xl:28px;
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 9px;
+  --radius-lg: 12px;
+  --radius-xl: 17px;
+  --radius-2xl:24px;
 
   /* Aliases for backward compat */
   --border-radius-sm: var(--radius-sm);
@@ -69,38 +69,38 @@
   --border-radius-xl: var(--radius-xl);
 
   /* Spacing */
-  --spacing-xs:  4px;
-  --spacing-sm:  6px;
-  --spacing-md:  12px;
-  --spacing-lg:  16px;
-  --spacing-xl:  24px;
-  --spacing-xxl: 32px;
+  --spacing-xs:  3px;
+  --spacing-sm:  5px;
+  --spacing-md:  10px;
+  --spacing-lg:  14px;
+  --spacing-xl:  20px;
+  --spacing-xxl: 27px;
 
   /* Shadows */
   --shadow-xs: 0 1px 2px rgba(0,0,0,0.4);
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.35);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.45);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.55);
-  --shadow-xl: 0 20px 60px rgba(0,0,0,0.65);
+  --shadow-sm: 0 2px 7px rgba(0,0,0,0.35);
+  --shadow-md: 0 3px 17px rgba(0,0,0,0.45);
+  --shadow-lg: 0 7px 34px rgba(0,0,0,0.55);
+  --shadow-xl: 0 17px 51px rgba(0,0,0,0.65);
 
   /* Typography */
   --font-sans:  'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono:  'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
   /* Font size scale (Scaled down for 1080p density) */
-  --text-2xs: 9px;
-  --text-xs:  10px;
-  --text-sm:  11px;
-  --text-md:  12px;
-  --text-base:13px;
-  --text-lg:  14px;
-  --text-xl:  15px;
-  --text-2xl: 16px;
-  --text-3xl: 18px;
-  --text-4xl: 20px;
-  --text-5xl: 24px;
-  --text-6xl: 28px;
-  --text-7xl: 32px;
+  --text-2xs: 8px;
+  --text-xs:  9px;
+  --text-sm:  9px;
+  --text-md:  10px;
+  --text-base:11px;
+  --text-lg:  12px;
+  --text-xl:  13px;
+  --text-2xl: 14px;
+  --text-3xl: 15px;
+  --text-4xl: 17px;
+  --text-5xl: 20px;
+  --text-6xl: 24px;
+  --text-7xl: 27px;
 
   /* Aliases for backward compat */
   --font-family-sans: var(--font-sans);
@@ -137,9 +137,9 @@
   --glass-bg:     rgba(255,255,255,0.9);
   --glass-border: rgba(0,0,0,0.07);
 
-  --shadow-sm: 0 1px 4px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 3px 14px rgba(0,0,0,0.1);
+  --shadow-lg: 0 7px 27px rgba(0,0,0,0.12);
 }
 
 /* ── GLOBAL RESET & BASE ─────────────────────────────────── */
@@ -150,7 +150,7 @@
 }
 
 html {
-  font-size: 13px;
+  font-size: 11px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -225,11 +225,11 @@ strong { font-weight: 600; }
 }
 
 /* ── SCROLLBARS ──────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar { width: 3px; height: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.08);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
@@ -256,13 +256,13 @@ strong { font-weight: 600; }
 
 /* ── ANIMATIONS ──────────────────────────────────────────── */
 @keyframes pulse-glow {
-  0%   { box-shadow: 0 0 5px rgba(34,197,94,0.15); }
-  50%  { box-shadow: 0 0 18px rgba(34,197,94,0.35); }
-  100% { box-shadow: 0 0 5px rgba(34,197,94,0.15); }
+  0%   { box-shadow: 0 0 4px rgba(34,197,94,0.15); }
+  50%  { box-shadow: 0 0 15px rgba(34,197,94,0.35); }
+  100% { box-shadow: 0 0 4px rgba(34,197,94,0.15); }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
