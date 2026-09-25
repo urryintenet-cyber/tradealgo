@@ -19,9 +19,8 @@ const INTERVAL_MAP = {
 const isDev = (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') ||
     (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV);
 
-// Always use proxy in browser/dev to avoid CORS and hide keys, but use absolute URL in Node.js
-const isNode = typeof process !== 'undefined' && process.versions && process.versions.node;
-const BINANCE_REST_BASE = isNode ? 'https://api.binance.com/api/v3' : '/api/binance';
+// Always use direct API in browser to bypass Render backend IP rate limits (Binance allows CORS)
+const BINANCE_REST_BASE = 'https://api.binance.com/api/v3';
 
 /**
  * Map institutional symbols to exchange-specific symbols (Binance Spot)
@@ -507,8 +506,8 @@ export class MarketDataService {
             // but the user wants to see the price moving every 5 seconds.
             let ticker = null;
             try {
-                // Fetch ticker for ALL symbols including synthetic ones to ensure live price in header
-                const tRes = await axios.get('/api/binance/ticker', { params: { symbol: this.activeSymbol } });
+                // Fetch ticker directly to bypass backend IP rate limit
+                const tRes = await axios.get('https://api.binance.com/api/v3/ticker/24hr', { params: { symbol: this.activeSymbol } });
                 ticker = tRes.data;
             } catch (e) { /* silent ticker fail */ }
 
