@@ -1,12 +1,9 @@
 {
     "version": 2,
-    "regions": [
-        "fra1"
-    ],
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "/api/proxy.js"
+            "destination": "https://tradealgo-kr92.onrender.com/api/$1"
         },
         {
             "source": "/(.*)",
