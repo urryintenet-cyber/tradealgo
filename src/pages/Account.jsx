@@ -10,7 +10,7 @@ import { useToast } from '../context/ToastContext';
 export default function Account() {
     const [activeTab, setActiveTab] = useState('profile');
     const { addToast } = useToast();
-    const { currentUser, subscriptionStatus, isTrialActive, isSubscriptionActive, trialTimeLeftMs } = useAuth();
+    const { currentUser, subscriptionStatus, isTrialActive, isSubscriptionActive, trialTimeLeftMs, logout } = useAuth();
     
     const [profile, setProfile] = useState({
         firstName: currentUser?.name?.split(' ')[0] || '',
@@ -166,7 +166,8 @@ export default function Account() {
                                 />
                             </div>
 
-                            <div style={{ paddingTop: '16px', borderTop: '1px solid var(--border-color)', display: 'flex', justifyContent: 'flex-end' }}>
+                            <div style={{ paddingTop: '16px', borderTop: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <button type="button" onClick={logout} className="btn btn-outline" style={{ color: 'var(--color-danger)', borderColor: 'var(--color-danger)' }}>Sign Out</button>
                                 <button type="submit" className="btn btn-primary">Save Changes</button>
                             </div>
                         </form>

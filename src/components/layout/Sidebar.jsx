@@ -88,14 +88,6 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
                     <User size={16} style={{ flexShrink: 0 }} />
                     Account
                 </NavLink>
-                <button
-                    onClick={handleLogout}
-                    className="btn btn-ghost nav-item"
-                    style={{ color: 'var(--color-danger)', marginTop: '2px' }}
-                >
-                    <LogOut size={16} style={{ flexShrink: 0 }} />
-                    Sign Out
-                </button>
             </div>
         </aside>
     );
