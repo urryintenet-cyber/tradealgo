@@ -52,12 +52,11 @@ export default function Header({ toggleSidebar }) {
             {/* Left: mobile hamburger + brand name */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
                 <button
-                    className="btn btn-ghost btn-icon"
+                    className="btn btn-ghost btn-icon mobile-menu-btn"
                     onClick={toggleSidebar}
-                    style={{ display: 'none', flexShrink: 0 }}
-                    id="mobile-menu-btn"
+                    aria-label="Open Navigation Menu"
                 >
-                    <Menu size={18} />
+                    <Menu size={16} />
                 </button>
 
                 {/* Brand name — visible on mobile since sidebar is hidden */}

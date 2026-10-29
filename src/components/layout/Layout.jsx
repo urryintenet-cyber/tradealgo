@@ -8,17 +8,8 @@ const Layout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const location = useLocation();
 
-    // Pages that use the full-bleed "Terminal" view (no padding, fixed height)
-    const isTerminalPage = [
-        '/app/markets',
-        '/app',
-        '/app/setups',
-        '/app/alerts',
-        '/app/lab',
-        '/app/scanner',
-    ].some(path =>
-        location.pathname === path || location.pathname.startsWith('/app/markets')
-    );
+    // Only Markets uses the full-bleed fixed terminal view; all other pages scroll naturally
+    const isTerminalPage = location.pathname === '/app/markets' || location.pathname.startsWith('/app/markets');
 
     const toggleSidebar = () => setIsSidebarOpen(v => !v);
 

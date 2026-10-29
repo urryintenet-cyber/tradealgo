@@ -75,45 +75,45 @@
   --border-radius-lg: var(--radius-lg);
   --border-radius-xl: var(--radius-xl);
 
-  /* Spacing */
-  --spacing-xs:  4px;
-  --spacing-sm:  6px;
-  --spacing-md:  12px;
-  --spacing-lg:  16px;
-  --spacing-xl:  24px;
-  --spacing-xxl: 32px;
+  /* Spacing — compact professional scale */
+  --spacing-xs:  2px;
+  --spacing-sm:  4px;
+  --spacing-md:  6px;
+  --spacing-lg:  10px;
+  --spacing-xl:  14px;
+  --spacing-xxl: 18px;
 
   /* Shadows */
-  --shadow-xs:  0 1px 3px rgba(0,0,0,0.5);
-  --shadow-sm:  0 2px 8px rgba(0,0,0,0.4);
-  --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
-  --shadow-lg:  0 8px 32px rgba(0,0,0,0.6);
-  --shadow-xl:  0 16px 48px rgba(0,0,0,0.7);
+  --shadow-xs:  0 1px 2px rgba(0,0,0,0.5);
+  --shadow-sm:  0 2px 6px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 14px rgba(0,0,0,0.5);
+  --shadow-lg:  0 8px 28px rgba(0,0,0,0.6);
+  --shadow-xl:  0 16px 44px rgba(0,0,0,0.7);
 
-  /* Typography */
+  /* Typography — compact institutional hierarchy */
   --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono:  'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
-  --text-xs:   11px;
-  --text-sm:   12px;
-  --text-base: 13px;
-  --text-md:   14px;
-  --text-lg:   15px;
-  --text-xl:   16px;
-  --text-2xl:  18px;
-  --text-3xl:  20px;
-  --text-4xl:  24px;
-  --text-5xl:  28px;
-  --text-6xl:  32px;
+  --text-xs:   9.5px;
+  --text-sm:   10.5px;
+  --text-base: 11.5px;
+  --text-md:   12.5px;
+  --text-lg:   13.5px;
+  --text-xl:   14.5px;
+  --text-2xl:  16px;
+  --text-3xl:  18px;
+  --text-4xl:  20px;
+  --text-5xl:  24px;
+  --text-6xl:  28px;
 
-  /* Transitions */
-  --transition-fast: all 0.12s ease;
-  --transition-base: all 0.18s ease;
-  --transition-slow: all 0.28s ease;
+  /* Transitions — ultra smooth cubic-bezier */
+  --transition-fast: all 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Slim sidebar width */
-  --sidebar-width: 48px;
-  --sidebar-width-expanded: 220px;
+  /* Ultra-slim sidebar width on desktop */
+  --sidebar-width: 40px;
+  --sidebar-width-expanded: 200px;
 }
 
 /* ═══ LIGHT THEME ════════════════════════════════════════════ */
@@ -158,6 +158,7 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -169,22 +170,29 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+  height: 100%;
 }
 
 #root {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
 /* ═══ SCROLLBARS ═════════════════════════════════════════════ */
-::-webkit-scrollbar { width: 4px; height: 4px; }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.28); }
 
-[data-theme='light'] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
+[data-theme='light'] * { scrollbar-color: rgba(0, 0, 0, 0.2) transparent; }
+[data-theme='light'] ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.16); }
+[data-theme='light'] ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.3); }
 
 /* ═══ TYPOGRAPHY ════════════════════════════════════════════ */
 h1,h2,h3,h4,h5,h6 {
