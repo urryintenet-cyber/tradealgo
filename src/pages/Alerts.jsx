@@ -46,41 +46,30 @@ export default function Alerts() {
     });
 
     return (
-        <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
+        <div className="page-with-asset-sidebar">
             <AssetSidebar 
                 selectedPair={selectedPair} 
                 onSelectPair={setSelectedPair} 
                 allowAll={true} 
             />
-            <div style={{ flex: 1, padding: '24px', overflowY: 'auto', color: 'white' }}>
-                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
+            <div style={{ flex: 1, padding: '12px 16px', overflowY: 'auto' }}>
+                <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
                     <div>
-                        <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px' }}>Institutional Alerts</h1>
-                        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>Real-time background scanning for "Smart Money" fingerprints.</p>
+                        <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: '800', marginBottom: '2px', color: 'var(--color-text-primary)' }}>Institutional Alerts</h1>
+                        <p style={{ color: 'var(--color-text-tertiary)', fontSize: 'var(--text-sm)' }}>Real-time background scanning for Smart Money fingerprints.</p>
                     </div>
 
                     <button
                         onClick={toggleMonitoring}
-                        style={{
-                            padding: '12px 24px',
-                            borderRadius: '12px',
-                            background: isMonitoring ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)',
-                            border: `1px solid ${isMonitoring ? 'rgba(239, 68, 68, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`,
-                            color: isMonitoring ? '#ef4444' : '#10b981',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px',
-                            fontWeight: 'bold',
-                            transition: 'all 0.2s'
-                        }}
+                        className={`btn ${isMonitoring ? 'btn-danger' : 'btn-success'}`}
+                        style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
                     >
-                        <Activity size={18} className={isMonitoring ? 'animate-pulse' : ''} />
+                        <Activity size={14} className={isMonitoring ? 'animate-pulse' : ''} />
                         {isMonitoring ? 'STOP SCANNER' : 'START MONITORING'}
                     </button>
                 </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', gap: '40px' }}>
+            <div className="alerts-grid">
                 {/* Main Alerts Feed */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <AnimatePresence mode="popLayout">
@@ -89,16 +78,16 @@ export default function Alerts() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 style={{
-                                    padding: '60px',
+                                    padding: '20px',
                                     textAlign: 'center',
-                                    background: 'rgba(255,255,255,0.02)',
-                                    borderRadius: '24px',
-                                    border: '1px solid rgba(255,255,255,0.05)'
+                                    background: 'var(--color-bg-tertiary)',
+                                    borderRadius: 'var(--radius-lg)',
+                                    border: '1px solid var(--border-color)'
                                 }}
                             >
-                                <Bell size={48} style={{ opacity: 0.1, marginBottom: '20px' }} />
-                                <h3 style={{ fontSize: '18px', color: 'rgba(255,255,255,0.3)' }}>No active signals detected.</h3>
-                                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.2)', marginTop: '8px' }}>
+                                <Bell size={36} style={{ opacity: 0.2, marginBottom: '12px', color: 'var(--color-accent-primary)' }} />
+                                <h3 style={{ fontSize: 'var(--text-md)', color: 'var(--color-text-secondary)' }}>No active signals detected.</h3>
+                                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-tertiary)', marginTop: '6px' }}>
                                     Enable background monitoring to detect institutional flows.
                                 </p>
                             </motion.div>
@@ -110,101 +99,74 @@ export default function Alerts() {
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
+                                    className={`card ${alert.severity === 'HIGH' ? 'card-accent-red' : 'card-accent-blue'}`}
                                     style={{
-                                        background: alert.status === 'ACKNOWLEDGED' ? 'rgba(255,255,255,0.02)' : 'rgba(30, 41, 59, 0.4)',
-                                        border: `1px solid ${alert.severity === 'HIGH' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255,255,255,0.05)'}`,
-                                        borderRadius: '16px',
-                                        padding: '20px',
+                                        padding: '12px 14px',
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
-                                        opacity: alert.status === 'ACKNOWLEDGED' ? 0.6 : 1,
+                                        opacity: alert.status === 'ACKNOWLEDGED' ? 0.55 : 1,
                                         transition: 'all 0.3s'
                                     }}
                                 >
-                                    <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                                         <div style={{
-                                            width: '48px',
-                                            height: '48px',
-                                            borderRadius: '12px',
-                                            background: alert.severity === 'HIGH' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(59, 130, 246, 0.1)',
+                                            width: '34px',
+                                            height: '34px',
+                                            borderRadius: 'var(--radius-md)',
+                                            background: alert.severity === 'HIGH' ? 'var(--color-danger-bg)' : 'var(--color-accent-light)',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
-                                            color: alert.severity === 'HIGH' ? '#ef4444' : '#3b82f6'
+                                            color: alert.severity === 'HIGH' ? 'var(--color-danger)' : 'var(--color-accent-primary)',
+                                            flexShrink: 0
                                         }}>
-                                            {alert.type === 'INSTITUTIONAL_FAKE_OUT' ? <Zap size={24} /> :
-                                                alert.type === 'LIQUIDITY_GRAB' ? <Target size={24} /> : <Activity size={24} />}
+                                            {alert.type === 'INSTITUTIONAL_FAKE_OUT' ? <Zap size={16} /> :
+                                                alert.type === 'LIQUIDITY_GRAB' ? <Target size={16} /> : <Activity size={16} />}
                                         </div>
 
                                         <div>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-                                                <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{alert.symbol}</span>
-                                                <span style={{
-                                                    fontSize: '10px',
-                                                    padding: '2px 6px',
-                                                    borderRadius: '4px',
-                                                    background: 'rgba(255,255,255,0.1)',
-                                                    color: 'rgba(255,255,255,0.6)',
-                                                    fontWeight: 'bold'
-                                                }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+                                                <span style={{ fontSize: 'var(--text-md)', fontWeight: '700', color: 'var(--color-text-primary)' }}>{alert.symbol}</span>
+                                                <span className="badge badge-default">
                                                     {alert.type.replace(/_/g, ' ')}
                                                 </span>
                                             </div>
-                                            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)', lineHeight: '1.4' }}>{alert.message}</p>
-                                            <div style={{ display: 'flex', gap: '12px', marginTop: '10px', alignItems: 'center' }}>
-                                                <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                                    <Clock size={12} /> {new Date(alert.timestamp).toLocaleTimeString()}
+                                            <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', lineHeight: '1.4' }}>{alert.message}</p>
+                                            <div style={{ display: 'flex', gap: '10px', marginTop: '6px', alignItems: 'center' }}>
+                                                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                                                    <Clock size={10} /> {new Date(alert.timestamp).toLocaleTimeString()}
                                                 </span>
-                                                <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }} />
                                                 <span style={{
-                                                    fontSize: '11px',
-                                                    fontWeight: 'bold',
-                                                    color: alert.iqScore >= 80 ? '#10b981' : '#f59e0b',
+                                                    fontSize: 'var(--text-xs)',
+                                                    fontWeight: '700',
+                                                    color: alert.iqScore >= 80 ? 'var(--color-success)' : 'var(--color-warning)',
                                                     display: 'flex',
                                                     alignItems: 'center',
-                                                    gap: '4px'
+                                                    gap: '3px'
                                                 }}>
-                                                    <Shield size={12} /> IQ SCORE: {alert.iqScore}
+                                                    <Shield size={10} /> IQ: {alert.iqScore}
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div style={{ display: 'flex', gap: '12px' }}>
+                                    <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
                                         {alert.status === 'ACTIVE' && (
                                             <button
                                                 onClick={() => handleAcknowledge(alert.id)}
-                                                style={{
-                                                    padding: '8px',
-                                                    borderRadius: '8px',
-                                                    background: 'rgba(255,255,255,0.05)',
-                                                    border: '1px solid rgba(255,255,255,0.1)',
-                                                    color: 'rgba(255,255,255,0.4)',
-                                                    cursor: 'pointer'
-                                                }}
+                                                className="btn btn-ghost btn-icon"
                                                 title="Acknowledge"
                                             >
-                                                <CheckCircle size={18} />
+                                                <CheckCircle size={14} />
                                             </button>
                                         )}
                                         <button
                                             onClick={() => handleAnalyse(alert.symbol)}
-                                            style={{
-                                                padding: '8px 16px',
-                                                borderRadius: '8px',
-                                                background: 'var(--color-accent-primary)',
-                                                border: 'none',
-                                                color: 'white',
-                                                cursor: 'pointer',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '8px',
-                                                fontSize: '12px',
-                                                fontWeight: 'bold'
-                                            }}
+                                            className="btn btn-primary btn-sm"
+                                            style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
                                         >
-                                            ANALYSE <ArrowRight size={14} />
+                                            ANALYSE <ArrowRight size={12} />
                                         </button>
                                     </div>
                                 </motion.div>
@@ -214,40 +176,32 @@ export default function Alerts() {
                 </div>
 
                 {/* Sidebar Stats */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <div style={{
-                        background: 'rgba(15, 23, 42, 0.4)',
-                        padding: '24px',
-                        borderRadius: '24px',
-                        border: '1px solid rgba(255,255,255,0.05)'
-                    }}>
-                        <h4 style={{ fontSize: '11px', fontWeight: 'bold', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px', marginBottom: '20px' }}>SYSTEM HEALTH</h4>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>Background Loop</span>
-                                <span style={{ color: isMonitoring ? '#10b981' : '#ef4444', fontSize: '11px', fontWeight: 'bold' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div className="card">
+                        <div className="card-header">
+                            <span className="card-title" style={{ fontSize: '10px' }}>SYSTEM HEALTH</span>
+                        </div>
+                        <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                            <div className="data-row">
+                                <span className="data-row-label">Background Loop</span>
+                                <span style={{ color: isMonitoring ? 'var(--color-success)' : 'var(--color-danger)', fontSize: 'var(--text-xs)', fontWeight: '700' }}>
                                     {isMonitoring ? 'ACTIVE' : 'IDLE'}
                                 </span>
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>Scan Frequency</span>
-                                <span style={{ fontSize: '11px', fontWeight: 'bold' }}>1min</span>
+                            <div className="data-row">
+                                <span className="data-row-label">Scan Frequency</span>
+                                <span className="data-row-value">1min</span>
                             </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>Active Watchlist</span>
-                                <span style={{ fontSize: '11px', fontWeight: 'bold' }}>{proactiveMonitor.watchlist.length} Assets</span>
+                            <div className="data-row">
+                                <span className="data-row-label">Active Watchlist</span>
+                                <span className="data-row-value">{proactiveMonitor.watchlist.length} Assets</span>
                             </div>
                         </div>
                     </div>
 
-                    <div style={{
-                        background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.02) 100%)',
-                        padding: '24px',
-                        borderRadius: '24px',
-                        border: '1px solid rgba(37, 99, 235, 0.2)'
-                    }}>
-                        <h4 style={{ fontSize: '11px', fontWeight: 'bold', color: '#3b82f6', letterSpacing: '1px', marginBottom: '12px' }}>IQ THRESHOLD</h4>
-                        <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', lineHeight: '1.6' }}>
+                    <div className="subscription-banner">
+                        <h4 style={{ fontSize: '10px', fontWeight: '700', color: 'var(--color-accent-primary)', letterSpacing: '0.05em', marginBottom: '4px' }}>IQ THRESHOLD</h4>
+                        <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>
                             Currently ignoring signals below IQ 50. High-conviction alerts (IQ 80+) are automatically saved to Signal Lab.
                         </p>
                     </div>

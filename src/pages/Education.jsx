@@ -113,30 +113,30 @@ export default function Education() {
     };
 
     return (
-        <div style={{ padding: '24px', maxWidth: '1400px', margin: '0 auto', color: 'var(--color-text-primary)' }}>
+        <div style={{ padding: '12px 16px', maxWidth: '1400px', margin: '0 auto', color: 'var(--color-text-primary)' }}>
             {/* Academy Header */}
-            <div className="flex-row justify-between items-center" style={{ marginBottom: '40px', background: 'var(--color-bg-secondary)', padding: '32px', borderRadius: '16px', border: '1px solid var(--color-border-primary)' }}>
-                <div>
-                    <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', letterSpacing: '-0.02em' }}>
+            <div className="flex-row justify-between items-center" style={{ marginBottom: '16px', background: 'var(--card-gradient)', padding: '16px 20px', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)', flexWrap: 'wrap', gap: '16px' }}>
+                <div style={{ minWidth: '260px', flex: 1 }}>
+                    <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: '800', marginBottom: '4px', letterSpacing: '-0.02em' }}>
                         {activeTrack === 'INSTITUTIONAL' ? 'Institutional Academy' : 'School of Pipsology'}
                     </h1>
-                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '14px' }}>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)', margin: 0 }}>
                         {activeTrack === 'INSTITUTIONAL'
                             ? 'Mastering the footprints of central banks and algorithms.'
                             : 'Acquire the skills to become a superstar trader. Make Pips. Keep Pips. Repeat.'}
                     </p>
                 </div>
 
-                <div style={{ textAlign: 'right', minWidth: '240px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '13px' }}>
-                        <span style={{ fontWeight: 'bold' }}>Academy Progress</span>
-                        <span style={{ color: 'var(--color-accent-primary)' }}>{progressPercentage.toFixed(0)}%</span>
+                <div style={{ textAlign: 'right', minWidth: '200px', flexShrink: 0 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: 'var(--text-xs)' }}>
+                        <span style={{ fontWeight: '700' }}>Academy Progress</span>
+                        <span style={{ color: 'var(--color-accent-primary)', fontWeight: '700' }}>{progressPercentage.toFixed(0)}%</span>
                     </div>
-                    <div style={{ height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden' }}>
+                    <div style={{ height: '6px', background: 'var(--color-bg-base)', borderRadius: 'var(--radius-full)', overflow: 'hidden' }}>
                         <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${progressPercentage}%` }}
-                            style={{ height: '100%', background: 'linear-gradient(90deg, var(--color-accent-primary), #00d2ff)' }}
+                            style={{ height: '100%', background: 'linear-gradient(90deg, var(--color-accent-primary), var(--color-cyan))' }}
                         />
                     </div>
                 </div>

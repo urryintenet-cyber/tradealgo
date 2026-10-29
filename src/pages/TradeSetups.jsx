@@ -42,31 +42,31 @@ export default function TradeSetups() {
     });
 
     return (
-        <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
+        <div className="page-with-asset-sidebar">
             <AssetSidebar 
                 selectedPair={selectedPair} 
                 onSelectPair={setSelectedPair} 
                 allowAll={true} 
             />
-            <div style={{ flex: 1, padding: '24px', overflowY: 'auto' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div style={{ flex: 1, padding: '12px 16px', overflowY: 'auto' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
                     <div>
-                        <h1 className="card-title" style={{ fontSize: '24px', marginBottom: '8px' }}>Trade Signals</h1>
-                        <p style={{ color: 'var(--color-text-secondary)', fontSize: '14px' }}>
+                        <h1 className="card-title" style={{ fontSize: 'var(--text-2xl)', marginBottom: '2px' }}>Trade Signals</h1>
+                        <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
                             AI-generated trade opportunities based on market analysis
                         </p>
                     </div>
-                    <div style={{ display: 'flex', gap: '8px' }}>
+                    <div style={{ display: 'flex', gap: '6px' }}>
                         <button
                             className={`btn ${isScalperMode ? 'btn-primary' : 'btn-outline'}`}
                             onClick={() => setIsScalperMode(!isScalperMode)}
-                            style={{ display: 'flex', gap: '8px', alignItems: 'center', borderColor: isScalperMode ? 'var(--color-accent)' : '' }}
+                            style={{ display: 'flex', gap: '5px', alignItems: 'center' }}
                         >
-                            <Zap size={16} fill={isScalperMode ? "currentColor" : "none"} />
-                            {isScalperMode ? "Scalper Mode ON" : "Scalper Mode"}
+                            <Zap size={12} fill={isScalperMode ? "currentColor" : "none"} />
+                            {isScalperMode ? "Scalper ON" : "Scalper Mode"}
                         </button>
-                        <button className="btn btn-outline" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                            <RefreshCw size={16} />
+                        <button className="btn btn-outline" style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+                            <RefreshCw size={12} />
                             Refresh
                         </button>
                     </div>
@@ -97,13 +97,13 @@ export default function TradeSetups() {
 
                 {/* Setups Grid */}
                 {loading ? (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px' }}>
                         {[1, 2, 3].map(i => (
                             <div key={i} className="card" style={{ height: '300px', background: 'var(--color-bg-tertiary)', opacity: 0.5 }}></div>
                         ))}
                     </div>
                 ) : filteredSetups.length > 0 ? (
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px' }}>
                         {filteredSetups.map(setup => (
                             <TradeSetupCard
                                 key={setup.id}

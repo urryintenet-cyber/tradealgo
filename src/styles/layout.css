@@ -74,9 +74,12 @@
   padding: 5px 2px;
   gap: 2px;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: visible;
   scrollbar-width: none;
+}
+@media (max-height: 480px) {
+  .sidebar-nav { overflow-y: auto; }
 }
 .sidebar-nav::-webkit-scrollbar { display: none; }
 
@@ -243,6 +246,31 @@
   min-height: 0;
   height: 100%;
 }
+.content-area:has(.page-with-asset-sidebar),
+.content-area:has(.markets-container),
+.content-area:has(.full-bleed-page) {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ═══ PAGE WITH ASSET SIDEBAR ════════════════════════════════ */
+.page-with-asset-sidebar {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  min-height: 0;
+  background: var(--color-bg-primary);
+}
+.page-with-asset-sidebar > main,
+.page-with-asset-sidebar > .page-main-content,
+.page-with-asset-sidebar > .dashboard-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-behavior: smooth !important;
+}
 
 /* ═══ MARKETS CONTAINER (Full Bleed Multi-Pane) ══════════════ */
 .markets-container {
@@ -253,7 +281,7 @@
   min-height: 0;
   overflow: hidden;
   position: relative;
-  background: #000;
+  background: var(--color-bg-primary);
 }
 .markets-container header {
   height: 44px !important;
@@ -281,7 +309,7 @@
   flex-direction: column;
   align-items: center;
   padding: 6px 0 !important;
-  gap: 4px !important;
+  gap: 6px !important;
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
   scroll-behavior: smooth !important;
@@ -290,18 +318,73 @@
   height: 100%;
 }
 .asset-sidebar::-webkit-scrollbar { display: none; }
-.asset-sidebar button {
+.asset-sidebar button, .asset-btn {
   width: 34px !important;
   height: 34px !important;
-  border-radius: 6px !important;
+  border-radius: var(--radius-sm) !important;
   font-size: 8.5px !important;
   font-weight: 700 !important;
   transition: var(--transition-fast) !important;
+  border: 1px solid var(--border-color) !important;
+  background: var(--color-bg-tertiary) !important;
+  color: var(--color-text-secondary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+}
+.asset-sidebar button:hover, .asset-btn:hover {
+  background: var(--color-bg-elevated) !important;
+  border-color: var(--border-color-hover) !important;
+  color: var(--color-text-primary) !important;
+}
+.asset-sidebar button.active, .asset-btn.active {
+  background: var(--color-accent-light) !important;
+  border-color: var(--color-accent-border) !important;
+  color: var(--color-accent-primary) !important;
+  box-shadow: 0 0 8px var(--color-accent-glow) !important;
+}
+.asset-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.asset-group-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  padding: 2px 0;
+}
+
+/* ═══ ALERTS LAYOUT ══════════════════════════════════════════ */
+.alerts-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ═══ ACCOUNT LAYOUT ═════════════════════════════════════════ */
+.account-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+.account-sidebar-nav {
+  width: 220px;
+  flex-shrink: 0;
 }
 
 /* ═══ DASHBOARD CONTAINER ════════════════════════════════════ */
 .dashboard-container {
-  padding: 8px 12px;
+  padding: 10px 14px !important;   /* override inline 24px */
   max-width: 1600px;
   margin: 0 auto;
   width: 100%;
@@ -310,27 +393,28 @@
   scroll-behavior: smooth !important;
 }
 
-/* Stats row */
+/* Stats row — 3 cols on medium+, 2 cols on small */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
-  margin-bottom: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
-/* Main 2-col layout */
+/* Main 2-col chart + side panel layout */
 .main-dashboard-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-/* Secondary grid */
+/* Secondary grid — 3 cols on large screens */
 .secondary-dashboard-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
 /* ═══ TERMINAL / MARKETS PANELS ══════════════════════════════ */
@@ -685,18 +769,57 @@
   }
 
   /* Asset sidebar becomes horizontal scroll strip on phones */
+  .page-with-asset-sidebar {
+    flex-direction: column !important;
+  }
   .asset-sidebar {
     width: 100% !important;
     min-width: 100% !important;
     height: 38px !important;
     min-height: 38px !important;
     flex-direction: row !important;
+    align-items: center !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     border-right: none !important;
     border-bottom: 1px solid var(--border-color) !important;
     padding: 2px 6px !important;
+    gap: 6px !important;
+  }
+  .asset-group {
+    flex-direction: row !important;
+    align-items: center !important;
     gap: 4px !important;
+  }
+  .asset-group-label {
+    display: none !important;
+  }
+  .asset-sidebar button, .asset-btn {
+    width: 30px !important;
+    height: 28px !important;
+    font-size: 8px !important;
+  }
+  .account-layout {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .account-sidebar-nav {
+    width: 100% !important;
+  }
+  .account-sidebar-nav .account-nav-list {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+    gap: 4px !important;
+    scrollbar-width: none !important;
+  }
+  .account-sidebar-nav .account-nav-list::-webkit-scrollbar { display: none; }
+  .account-sidebar-nav .btn {
+    white-space: nowrap !important;
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+    flex-shrink: 0 !important;
   }
 
   .terminal-left  { display: none; }

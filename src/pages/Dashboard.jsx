@@ -264,26 +264,26 @@ export default function Dashboard() {
     }
 
     return (
-        <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
+        <div className="page-with-asset-sidebar">
             <AssetSidebar 
                 selectedPair={selectedSymbol} 
                 onSelectPair={setSelectedSymbol} 
                 allowAll={false} 
             />
             
-            <div className="dashboard-container" style={{ flex: 1, padding: '24px', overflowY: 'auto' }}>
-                <div className="flex-row justify-between items-end" style={{ marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
+            <div className="dashboard-container">
+                <div className="flex-row justify-between items-end" style={{ marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
                     <div className="flex-col">
-                        <h1 style={{ fontSize: 'var(--spacing-xl)', margin: 0, letterSpacing: '-1px', fontWeight: '900', color: 'white' }}>COMMAND CENTER</h1>
-                        <p style={{ fontSize: '11px', opacity: 0.4, fontWeight: 'bold', margin: 0 }}>INTELLIGENCE v5.2 // INSTITUTIONAL GRADE</p>
+                        <h1 style={{ fontSize: 'var(--text-2xl)', margin: 0, letterSpacing: '-0.5px', fontWeight: '800', color: 'var(--color-text-primary)' }}>COMMAND CENTER</h1>
+                        <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)', fontWeight: '600', margin: 0, letterSpacing: '0.05em' }}>INTELLIGENCE v5.2 // INSTITUTIONAL GRADE</p>
                     </div>
-                    <div className="flex-row gap-lg items-center" style={{ flexWrap: 'wrap' }}>
+                    <div className="flex-row gap-md items-center" style={{ flexWrap: 'wrap' }}>
                         <div className="flex-row items-center gap-xs">
-                            <div className="pulse-dot" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }}></div>
-                            <span style={{ fontSize: '10px', color: '#10b981', fontWeight: 'bold', letterSpacing: '1px' }}>LIVE CONNECTION</span>
+                            <span className="live-dot"></span>
+                            <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-success)', fontWeight: '700', letterSpacing: '0.06em' }}>LIVE</span>
                         </div>
-                        <div className="badge badge-success" style={{ fontSize: '9px', fontWeight: '900' }}>CORE ENGINE ACTIVE</div>
-                        <div style={{ fontSize: '11px', fontFamily: 'monospace', opacity: 0.6 }} className="hide-mobile">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}</div>
+                        <div className="badge badge-accent">CORE ENGINE ACTIVE</div>
+                        <div className="hide-mobile" style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--color-text-tertiary)' }}>{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}</div>
                     </div>
                 </div>
 

@@ -63,6 +63,9 @@
   --border-color-soft:     rgba(255, 255, 255, 0.04);  /* Neutral barely-there */
   --border-color-hover:    rgba(74, 124, 255, 0.18);   /* Hover state */
   --border-color-active:   rgba(74, 124, 255, 0.45);   /* Active / focus */
+  --color-border:          var(--border-color);
+  --color-border-primary:  var(--border-color);
+  --color-accent:          var(--color-accent-primary);
 
   /* === GLASS EFFECTS === */
   --glass-bg:     rgba(10, 15, 30, 0.88);
@@ -264,11 +267,13 @@ a:hover { color: var(--color-accent-hover); }
 .badge-danger  { background: var(--color-danger-bg);  color: var(--color-danger);  border: 1px solid var(--color-danger-border); }
 .badge-warning { background: var(--color-warning-bg); color: var(--color-warning); border: 1px solid var(--color-warning-border); }
 .badge-accent  { background: var(--color-accent-light); color: var(--color-accent-primary); border: 1px solid var(--color-accent-border); }
+.badge-primary { background: var(--color-accent-light); color: var(--color-accent-primary); border: 1px solid var(--color-accent-border); }
 .badge-cyan    { background: var(--color-cyan-light); color: var(--color-cyan); border: 1px solid var(--color-cyan-border); }
 .badge-default { background: var(--color-bg-elevated); color: var(--color-text-secondary); border: 1px solid var(--border-color); }
+.badge-neutral { background: var(--color-bg-elevated); color: var(--color-text-secondary); border: 1px solid var(--border-color); }
 
 /* ═══ LIVE DOT ══════════════════════════════════════════════ */
-.live-dot {
+.live-dot, .pulse-dot {
   display: inline-flex;
   width: 6px; height: 6px;
   border-radius: 50%;
@@ -279,6 +284,13 @@ a:hover { color: var(--color-accent-hover); }
 @keyframes pulse-dot {
   0%,100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(0.82); }
+}
+
+/* Glass panel alias */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
 }
 
 /* ═══ INPUT ═════════════════════════════════════════════════ */
@@ -356,10 +368,20 @@ select.input {
   from { opacity: 0; transform: translateY(8px) scale(0.99); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
 
-.fade-in      { animation: fadeIn 0.2s ease both; }
+.fade-in       { animation: fadeIn 0.2s ease both; }
 .slide-in-left { animation: slideInLeft 0.2s ease both; }
-.card-in      { animation: cardIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.card-in       { animation: cardIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-spin  { animation: spin 1s linear infinite; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
 /* ═══ SKELETON ══════════════════════════════════════════════ */
 .skeleton {

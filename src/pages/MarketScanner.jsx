@@ -92,35 +92,25 @@ export default function MarketScanner() {
     };
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#000' }}>
-            <main style={{ flex: 1, padding: '32px 24px' }}>
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--color-bg-primary)', overflowY: 'auto' }}>
+            <main style={{ flex: 1, padding: '12px 16px' }}>
                 <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <header style={{ marginBottom: '32px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <header style={{ marginBottom: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '8px' }}>
                         <div>
-                            <div className="flex-row items-center gap-sm" style={{ marginBottom: '8px' }}>
-                                <Shield size={16} color="var(--color-accent-primary)" />
-                                <span style={{ fontSize: '10px', fontWeight: 'bold', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Institutional Flow</span>
+                            <div className="flex-row items-center gap-sm" style={{ marginBottom: '4px' }}>
+                                <Shield size={12} color="var(--color-accent-primary)" />
+                                <span style={{ fontSize: 'var(--text-xs)', fontWeight: '700', color: 'var(--color-accent-primary)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Institutional Flow</span>
                             </div>
-                            <h1 style={{ fontSize: '36px', fontWeight: '900', letterSpacing: '-0.02em' }}>Command Center</h1>
+                            <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: '800', letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>Command Center</h1>
                         </div>
 
                         <div className="flex-row gap-md">
-                            <div style={{ background: 'rgba(255,255,255,0.03)', padding: '4px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', gap: '2px' }}>
+                            <div className="tabs-pill">
                                 {['ALL', 'SETUPS', 'BULLISH', 'BEARISH', 'LEADERS'].map(f => (
                                     <button
                                         key={f}
                                         onClick={() => setFilter(f)}
-                                        style={{
-                                            padding: '8px 16px',
-                                            borderRadius: '8px',
-                                            fontSize: '11px',
-                                            fontWeight: 'bold',
-                                            border: 'none',
-                                            background: filter === f ? 'var(--color-accent-primary)' : 'transparent',
-                                            color: filter === f ? 'white' : 'rgba(255,255,255,0.4)',
-                                            cursor: 'pointer',
-                                            transition: 'all 0.2s'
-                                        }}
+                                        className={`tab-pill ${filter === f ? 'active' : ''}`}
                                     >
                                         {f}
                                     </button>
@@ -129,10 +119,11 @@ export default function MarketScanner() {
                         </div>
                     </header>
 
-                    <div className="card glass-panel" style={{ padding: 0, borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+                        <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
                         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                             <thead>
-                                <tr style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                                <tr style={{ background: 'var(--color-bg-secondary)', borderBottom: '1px solid var(--border-color)' }}>
                                     <th style={styles.th}>ASSET</th>
                                     <th style={styles.th}>PRICE / 24H</th>
                                     <th style={styles.th}>MTF BIAS MATRIX</th>
@@ -244,7 +235,7 @@ export default function MarketScanner() {
                                                 </td>
                                                 <td style={styles.td}>
                                                     <button
-                                                        onClick={() => navigate('/markets', { state: { pair: res.symbol } })}
+                                                        onClick={() => navigate('/app/markets', { state: { pair: res.symbol } })}
                                                         style={styles.actionBtn}
                                                     >
                                                         <Maximize2 size={14} />
@@ -257,6 +248,7 @@ export default function MarketScanner() {
                                 )}
                             </tbody>
                         </table>
+                        </div>
                     </div>
 
                     <div style={{ marginTop: '32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
@@ -286,8 +278,8 @@ export default function MarketScanner() {
             </main>
             <Footer />
             <style>{`
-                .row-hover:hover { background: rgba(56, 189, 248, 0.04) ! from #000; }
-                .row-hover { border-bottom: 1px solid rgba(255,255,255,0.03); transition: all 0.2s; }
+                .row-hover:hover { background: rgba(74, 124, 255, 0.05); }
+                .row-hover { border-bottom: 1px solid var(--border-color); transition: all 0.2s; }
                 .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%); background-size: 200% 100%; animation: loading 1.5s infinite; border-radius: 4px; }
                 @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
             `}</style>

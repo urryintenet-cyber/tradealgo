@@ -38,25 +38,25 @@ export default function SignalLab() {
     };
 
     return (
-        <div style={{ display: 'flex', height: '100%', overflow: 'hidden' }}>
+        <div className="page-with-asset-sidebar">
             <AssetSidebar 
                 selectedPair={selectedPair} 
                 onSelectPair={setSelectedPair} 
                 allowAll={false} 
             />
-            <main style={{ flex: 1, padding: '24px', overflowY: 'auto' }}>
+            <main style={{ flex: 1, padding: '12px 16px', overflowY: 'auto' }}>
                 <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-                    <header style={{ textAlign: 'center', marginBottom: '40px' }}>
-                        <div className="flex-row justify-center items-center gap-sm" style={{ marginBottom: '16px' }}>
-                            <div className="badge badge-primary" style={{ padding: '4px 12px' }}>PRO FEATURE</div>
+                    <header style={{ textAlign: 'center', marginBottom: '16px' }}>
+                        <div className="flex-row justify-center items-center gap-sm" style={{ marginBottom: '8px' }}>
+                            <div className="badge badge-accent">PRO FEATURE</div>
                         </div>
-                        <h1 style={{ fontSize: '40px', fontWeight: '900', marginBottom: '16px', letterSpacing: '-0.02em' }}>Signal Lab</h1>
-                        <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
+                        <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: '800', marginBottom: '6px', letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>Signal Lab</h1>
+                        <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
                             Institutional-grade hyperparameter tuning. Test thousands of stop-loss and take-profit combinations to identify the "Golden Parameters" for every asset.
                         </p>
                     </header>
 
-                    <div className="card glass-panel" style={{ padding: '32px', marginBottom: '32px' }}>
+                    <div className="card" style={{ padding: '16px', marginBottom: '16px' }}>
                         <div className="flex-row justify-between items-center" style={{ marginBottom: '24px' }}>
                             <div className="flex-row items-center gap-md">
                                 <Settings2 size={20} color="var(--color-accent-primary)" />

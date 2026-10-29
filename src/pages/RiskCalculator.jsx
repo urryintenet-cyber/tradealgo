@@ -70,13 +70,14 @@ export default function RiskCalculator() {
 
     return (
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <h1 className="card-title" style={{ fontSize: '24px', marginBottom: '24px' }}>Position Size Calculator</h1>
+            <h1 className="card-title" style={{ fontSize: 'var(--text-2xl)', marginBottom: '16px' }}>Position Size Calculator</h1>
 
             <div className="card">
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '32px' }}>
+                <div className="card-body">
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', marginBottom: '20px' }}>
                     <div className="flex-col gap-sm">
                         <div className="flex-row justify-between items-center">
-                            <label style={{ fontSize: '14px', fontWeight: '500' }}>Account Balance ($)</label>
+                            <label style={{ fontSize: 'var(--text-sm)', fontWeight: '600' }}>Account Balance ($)</label>
                             {liveEquity && (
                                 <button
                                     onClick={() => setUseLiveBalance(!useLiveBalance)}
@@ -155,14 +156,15 @@ export default function RiskCalculator() {
                     </div>
                 )}
 
-                <div style={{ background: 'var(--color-bg-tertiary)', padding: '24px', borderRadius: '8px', textAlign: 'center' }}>
-                    <p style={{ color: 'var(--color-text-secondary)', marginBottom: '8px' }}>Recommended Position Size</p>
-                    <div style={{ fontSize: '48px', fontWeight: 'bold', color: 'var(--color-accent-primary)' }}>
-                        {calculateSize()} <span style={{ fontSize: '24px' }}>{getUnitLabel()}</span>
+                <div style={{ background: 'var(--color-bg-base)', border: '1px solid var(--border-color)', padding: '16px', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)', marginBottom: '4px' }}>Recommended Position Size</p>
+                    <div style={{ fontSize: 'var(--text-4xl)', fontWeight: '800', color: 'var(--color-accent-primary)', letterSpacing: '-0.02em' }}>
+                        {calculateSize()} <span style={{ fontSize: 'var(--text-lg)', fontWeight: '600' }}>{getUnitLabel()}</span>
                     </div>
-                    <p style={{ fontSize: '14px', marginTop: '16px' }}>
-                        Risk Amount: <span style={{ color: 'var(--color-danger)' }}>${(balance * (riskPercent / 100)).toFixed(2)}</span>
+                    <p style={{ fontSize: 'var(--text-sm)', marginTop: '8px', color: 'var(--color-text-secondary)' }}>
+                        Risk Amount: <span style={{ color: 'var(--color-danger)', fontWeight: '700' }}>${(balance * (riskPercent / 100)).toFixed(2)}</span>
                     </p>
+                </div>
                 </div>
             </div>
         </div>

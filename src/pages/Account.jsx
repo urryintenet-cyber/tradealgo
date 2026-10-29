@@ -84,11 +84,11 @@ export default function Account() {
     };
 
     return (
-        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', gap: '32px' }}>
+        <div className="account-layout">
             {/* Settings Sidebar */}
-            <div style={{ width: '240px', flexShrink: 0 }}>
-                <h1 className="card-title" style={{ fontSize: '24px', marginBottom: '24px' }}>Settings</h1>
-                <div className="flex-col gap-sm">
+            <div className="account-sidebar-nav">
+                <h1 className="card-title" style={{ fontSize: 'var(--text-xl)', marginBottom: '12px' }}>Settings</h1>
+                <div className="flex-col gap-sm account-nav-list">
                     {tabs.map(tab => (
                         <button
                             key={tab.id}
@@ -101,14 +101,14 @@ export default function Account() {
                                 fontWeight: activeTab === tab.id ? '600' : '400'
                             }}
                         >
-                            <tab.icon size={18} /> {tab.label}
+                            <tab.icon size={16} /> {tab.label}
                         </button>
                     ))}
                 </div>
             </div>
 
             {/* Main Content Area */}
-            <div style={{ flex: 1 }}>
+            <div className="account-main-content" style={{ flex: 1, minWidth: 0 }}>
                 {activeTab === 'profile' && (
                     <div className="card">
                         <h2 className="card-title" style={{ marginBottom: '24px' }}>Personal Information</h2>
