@@ -8,22 +8,23 @@ const Layout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const location = useLocation();
 
-    // Pages that should use the full-bleed "Terminal" view
-    const isTerminalPage = ['/app/markets', '/app/dashboard', '/app', '/app/setups', '/app/alerts', '/app/lab'].some(path =>
+    // Pages that use the full-bleed "Terminal" view (no padding, fixed height)
+    const isTerminalPage = [
+        '/app/markets',
+        '/app',
+        '/app/setups',
+        '/app/alerts',
+        '/app/lab',
+        '/app/scanner',
+    ].some(path =>
         location.pathname === path || location.pathname.startsWith('/app/markets')
     );
 
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
+    const toggleSidebar = () => setIsSidebarOpen(v => !v);
 
     return (
-        <div className="app-layout">
+        <div className="app-shell">
             <OnboardingTour />
-            <div
-                className={`sidebar-overlay ${isSidebarOpen ? 'visible' : ''}`}
-                onClick={toggleSidebar}
-            />
             <Sidebar isOpen={isSidebarOpen} closeSidebar={() => setIsSidebarOpen(false)} />
             <div className="main-content">
                 <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />

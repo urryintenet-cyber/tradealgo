@@ -1237,7 +1237,7 @@ app.post('/api/auth/register', authLimiter, async (req, res) => {
 
         const { hash, salt } = hashPassword(password);
         const now = Date.now();
-        const trialEndsAtMs = now + 24 * 60 * 60 * 1000; // 24-hour trial
+        const trialEndsAtMs = now + 7 * 24 * 60 * 60 * 1000; // 7-day trial
         const userId = crypto.randomBytes(16).toString('hex');
 
         const userData = {
